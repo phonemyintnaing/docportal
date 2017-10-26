@@ -6,7 +6,7 @@ define('DB_USER', 'root');
 define('DB_PASS', 'phone');
 define('DB_NAME', 'wms');
 
-$conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS);
+$conn = mysql_connect(DB_SERVER, DB_USER, DB_PASS);
 if (!$conn)	die('Server not connected');
 
 $db = mysql_select_db(DB_NAME);
