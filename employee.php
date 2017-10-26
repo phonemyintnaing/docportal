@@ -49,8 +49,8 @@ if(mysql_num_rows($result_email) == 1) {
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
-    <title>EHMS | Home page</title>
-    <meta name="description" content="EHMS">
+    <title>Mr. GP | Home page</title>
+    <meta name="description" content="Mr. GP">
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -83,7 +83,7 @@ if(mysql_num_rows($result_email) == 1) {
                     </a>
                     <h1>
                         <a class="brand" href="index.php">
-                            EHMS
+                            Mr. GP
                             <i class="icon-user-md"></i>
                         </a>
                             
@@ -109,7 +109,7 @@ if(mysql_num_rows($result_email) == 1) {
     <div id="content" role="main">
 	  <section style="padding:20px; margin:0;">
             <div class="container" align="center">
-                   <h2 align="center">Employee Dashboard</h2>
+                   <h2 align="center">Patient Dashboard</h2>
 					<br />
             	<div class="btn-toolbar" style="margin: 0;">
                 
@@ -211,7 +211,7 @@ class="try_again btn btn-primary" >Try Again?</a></p>
 	echo '<div style="margin:0px" id="update" >
 	     <h3>No Medical History yet. Please fill your Details!</h3>
 		<p style="color:#FF0000">( * ) Indicate, enter number only.</p>
-		<form  id="updateUserStatus" name="updateUserStatus" action="add_employee_process.php" method="post">  
+		<form  id="updateUserStatus" name="updateUserStatus" action="add_Patient_process.php" method="post">  
 		<div class="showEdit" id="showEdit"  style="padding:30px;">
 		<label for="type_of_disease">Type of Disease:</label>
 		<input id ="type_of_disease" name="type_of_disease" type="text" style="margin-bottom:20px;"/><span style="font-size:12px;"> ( Leave blank if you don\'t have any. )</span>
@@ -274,18 +274,18 @@ class="try_again btn btn-primary" >Try Again?</a></p>
                 <div class="span4">
                     <h3>Contact us</h3>
                    
-                    <ul class="icons">
+                   <ul class="icons">
                         <li>
-                            <i class="icon-envelope"></i><a href="mailto:zayarsoethein.k@gmail.com">EHMS</a>
+                            <i class="icon-envelope"></i><a href="mailto:initmyanmar@gmail.com">Mr. GP</a>
                         </li>
                         <li>
-                            <i class="icon-twitter"></i><a href="http://www.twitter.com/ehms" target="_blank">@zayar</a>
+                            <i class="icon-twitter"></i><a href="http://www.twitter.com/Mr. GP" target="_blank">@initmyanmarsoftware</a>
                         </li>
                         <li>
-                            <i class="icon-facebook"></i><a href="http://www.facebook.com" target="_blank">zayar &amp; phyo</a>
+                            <i class="icon-facebook"></i><a href="http://www.facebook.com/profile.php?id=1918713951751319" target="_blank">Init Myanmar Software</a>
                         </li>
                         <li>
-                            <i class="icon-phone"></i>+60176259769
+                            <i class="icon-phone"></i>+95 9455821510
                         </li>
                     </ul>
                 </div>
@@ -295,14 +295,14 @@ class="try_again btn btn-primary" >Try Again?</a></p>
                         <li><p>
                                 <i class="icon-twitter"></i>How to Know If You Have High Cholesterol
                                 <small>
-                                    by <a href="#">EHMS</a>
+                                    by <a href="#">Mr. GP</a>
                                 </small>
                             </p>
                         </li>
                         <li><p>
                                 <i class="icon-twitter"></i>A Good Workout Can Work the Kinks Out
                                 <small>
-                                    by <a href="#">EHMS</a>
+                                    by <a href="#">Mr. GP</a>
                                 </small>
                             </p>
                         </li>
@@ -326,7 +326,7 @@ class="try_again btn btn-primary" >Try Again?</a></p>
             <p>&nbsp;</p>
             	<div class="row-fluid pull-center">
                     <div class="span12">
-                        &copy; 2013 - EHMS by <a href="mailto:zayarsoethein.k@gmail.com">Zayar &amp; Phyo</a>
+                        &copy; 2013 - Mr. GP by <a href="mailto:initmyanmmar@gmail.com">Init Myanmar Software</a>
                     </div>
         	 	</div>           
         </div>

@@ -34,8 +34,8 @@ if(mysql_num_rows($result) == 1) {
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
-    <title>doctor portal | Home page</title>
-    <meta name="description" content="doctor portal">
+    <title>EHMS | Home page</title>
+    <meta name="description" content="EHMS">
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -68,7 +68,7 @@ if(mysql_num_rows($result) == 1) {
                     </a>
                     <h1>
                         <a class="brand" href="administrator.php">
-                            doctor portal
+                            EHMS
                             <i class="icon-user-md"></i>
                         </a>
                             
@@ -329,16 +329,16 @@ if(mysql_num_rows($result) == 1) {
                    
                     <ul class="icons">
                         <li>
-                            <i class="icon-envelope"></i><a href="mailto:doctor.k@gmail.com">doctor portal</a>
+                            <i class="icon-envelope"></i><a href="mailto:zayarsoethein.k@gmail.com">EHMS</a>
                         </li>
                         <li>
-                            <i class="icon-twitter"></i><a href="http://www.twitter.com/doctor portal" target="_blank">@doctor</a>
+                            <i class="icon-twitter"></i><a href="http://www.twitter.com/ehms" target="_blank">@zayar</a>
                         </li>
                         <li>
-                            <i class="icon-facebook"></i><a href="http://www.facebook.com" target="_blank">doctor</a>
+                            <i class="icon-facebook"></i><a href="http://www.facebook.com" target="_blank">zayar &amp; phyo</a>
                         </li>
                         <li>
-                            <i class="icon-phone"></i>++0928998322
+                            <i class="icon-phone"></i>+60176259769
                         </li>
                     </ul>
                 </div>
@@ -348,14 +348,14 @@ if(mysql_num_rows($result) == 1) {
                         <li><p>
                                 <i class="icon-twitter"></i>How to Know If You Have High Cholesterol
                                 <small>
-                                    by <a href="#">doctor portal</a>
+                                    by <a href="#">EHMS</a>
                                 </small>
                             </p>
                         </li>
                         <li><p>
                                 <i class="icon-twitter"></i>A Good Workout Can Work the Kinks Out
                                 <small>
-                                    by <a href="#">doctor portal</a>
+                                    by <a href="#">EHMS</a>
                                 </small>
                             </p>
                         </li>
@@ -366,11 +366,11 @@ if(mysql_num_rows($result) == 1) {
                     <ul class="unstyled">
                         <li>
                             <h4><a href="#">The greatest wealth is health</a></h4>
-                            <p><small>April 12, 2017</small></p>
+                            <p><small>April 12, 2013</small></p>
                         </li>
                         <li>
                             <h4><a href="#">Physical fitness</a></h4>
-                            <p><small>April 20, 2017</small></p>
+                            <p><small>April 20, 2013</small></p>
                         </li>
                        
                     </ul>
@@ -379,7 +379,7 @@ if(mysql_num_rows($result) == 1) {
             <p>&nbsp;</p>
             	<div class="row-fluid pull-center">
                     <div class="span12">
-                        &copy; 2017 - doctor portal by <a href="mailto:doctor@gmail.com">doctor</a>
+                        &copy; 2013 - EHMS by <a href="mailto:zayarsoethein.k@gmail.com">Zayar &amp; Phyo</a>
                     </div>
         	 	</div>           
         </div>

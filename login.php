@@ -44,6 +44,12 @@ $result = mysql_query($query);
 				$_SESSION['fname'] = $row['fname'];
 				$_SESSION['email'] = $row['email'];	
 				$_SESSION['role'] = $row['role'];
+				echo msgLogin(1,"doctor.php");
+			} else if($row['role'] == 3){	
+				$_SESSION['id'] = $row['id'];
+				$_SESSION['fname'] = $row['fname'];
+				$_SESSION['email'] = $row['email'];	
+				$_SESSION['role'] = $row['role'];
 				echo msgLogin(1,"employee.php");
 			}
 		}

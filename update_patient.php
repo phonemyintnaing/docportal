@@ -6,13 +6,27 @@ if(!isset($_SESSION['role']) && $_SESSION['role'] != 1){
 	header('Location: index.php');	
 }
 
-$query_count = "SELECT *, COUNT(type_of_disease) FROM users_info GROUP BY type_of_disease"; 		 
-	$result_count = mysql_query($query_count) or die(mysql_error());
-	$data = array();
-		while($row = mysql_fetch_array($result_count)) {		
-		$data[] = array(strtoupper($row['type_of_disease']), (int)$row['COUNT(type_of_disease)']);
+if(!isset($_GET['userid'])){
+header('Location: index.php');	
+exit();
+}
+
+$gp = $_SESSION['id'];
+$userid=$_GET['userid'];
+$_SESSION['updateuser'] = $userid;
+$query ="SELECT * FROM patient_info WHERE patients = '$userid'";
+$result = mysql_query($query);
+if(mysql_num_rows($result) == 1) {
+	while($row = mysql_fetch_assoc($result)){
+		$blood_pressure_p = $row['blood_pressure'];
+		$sugar_level_p = $row['sugar_level'];
+		$height_p = $row['height'];
+		$weight_p = $row['weight'];
 	}
-		$data = json_encode($data);
+} else {
+	header('Location: index.php');	
+	exit();
+}
 
 ?>
 
@@ -39,8 +53,8 @@ $query_count = "SELECT *, COUNT(type_of_disease) FROM users_info GROUP BY type_o
 	<script type="text/javascript" src="js/jquery.fastLiveFilter.js"></script>
 	<script type="text/javascript" src="js/jquery-ajax-add_new_user.js"></script>
 	<script type="text/javascript" src="js/update_status.js"></script>
-	<link class="include" rel="stylesheet" type="text/css" href="css/jquery.jqplot.css" />
-    <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/excanvas.js"></script><![endif]-->
+   
+  
 </head>
 <body class="theme">   
     <!-- Page Header -->
@@ -54,7 +68,7 @@ $query_count = "SELECT *, COUNT(type_of_disease) FROM users_info GROUP BY type_o
                         <span class="icon-bar"></span>
                     </a>
                     <h1>
-                        <a class="brand" href="administrator.php">
+                        <a class="brand" href="doctor.php">
                             Mr. GP
                             <i class="icon-user-md"></i>
                         </a>
@@ -81,63 +95,57 @@ $query_count = "SELECT *, COUNT(type_of_disease) FROM users_info GROUP BY type_o
     <div id="content" role="main">
 	  <section style="padding:20px; margin:0;">
             <div class="container" align="center">
-                   <h2 align="center">Administrator Dashboard</h2>
+                   <h2 align="center">Doctor Dashboard</h2>
 					<br />
             	<div class="btn-toolbar" style="margin: 0;">
                 
                 <div class="btn-group" align="left">
                 <button class="btn btn-white dropdown-toggle" data-toggle="dropdown">Manage Users <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li><a class="listusers" href="#">List Users</a></li>
-                  <li><a class="addnewusers" href="#">Add New Users</a></li>  
-				 <li><a class="showpercentage" href="#">Statistic of Disease</a></li>
+                  <li><a class="listusers" href="#">List Patients</a></li>
+                  <li><a class="addnewusers" href="#">Add New Patients</a></li>   
+				  	 <li><a class="showpercentage" href="#">Statistic of Disease</a></li>
                 </ul>
               </div>
-
+				              
               </div>
 			  
 	<div align="left" class="container">
 	
 	<p>&nbsp;</p>
 	
-		<?php
-		if(isset($_GET['update']) && $_GET['update'] == "error"){
-		echo'<div align="center" style="width:94%; margin: 0 auto; padding-top:10px; " id="message_update">
-			<div class="alert alert-danger">
-			<a href="#" class="close" data-dismiss="alert">&times;</a>
-			<h4>ERROR UPDATE USER ACCOUNT!</h4>
-			User account unable to updated. Invalid user input! 
-			<p><a href="javascript:history.back()" name="Back" value="Back"
-class="btn btn-primary" >Try Again?</a></p>
 
-			</div>		
-		</div>'; 
-		}
-		?>
+	
+	<div style="margin:20px" id="update" class="page">
 	
 	<?php
-		if(isset($_GET['update']) && $_GET['update'] == "success"){
-		echo'<div align="center" style="width:94%; margin: 0 auto; padding-top:10px; " id="message_update">
-			<div class="alert alert-info">
-			<a href="#" class="close" data-dismiss="alert">&times;</a>
-			<h4>ACCOUNT UPDATED!</h4>
-			User account has been successfully updated.
-			</div>		
-		</div>'; 
-		}
-		?>
+	if(isset($_GET)){
+		echo "
+		<form  id='updateUserStatus' name='updateUserStatus' action='update_patient_process.php' method='post'>  
+		<div class='showEdit' id='showEdit'  padding:30px;'>	
+		<label for='blood_presure'>Blood Presure:</label>
+		<input id ='blood_pressure' name='blood_pressure' type='text' value='$blood_pressure_p' style='display:block; margin-bottom:20px;'/>
+		<label for='sugar_level'>Sugar Level:</label>
+		<input id ='sugar_level' name='sugar_level' type='text' value='$sugar_level_p' style='display:block; margin-bottom:20px;'/>
+		<label for='height'>Height:</label>
+		<input id ='height' name='height' type='text' value='$height_p' style='display:block; margin-bottom:20px;'/>
+		<label for='weight'>Weight:</label>
+		<input id ='weight' name='weight' type='text' value='$weight_p' style='display:block; margin-bottom:20px;'/>
+		<p style='padding:10px 0 0 0;'>
+		<input id='submit' name='submit' type='submit' class='btn btn-danger submit' value='Update'/>									
+		</p>
+		</div>
+	</form>";		
+	}
 	
-		<?php
-		if(isset($_GET['add']) && $_GET['add'] == "success"){
-		echo'<div align="center" style="width:94%; margin: 0 auto; padding-top:10px; " id="message_update">
-			<div class="alert alert-info">
-			<a href="#" class="close" data-dismiss="alert">&times;</a>
-			<h4>ACCOUNT ADDED!</h4>
-			User account has been successfully added.
-			</div>		
-		</div>'; 
-		}
-		?>
+	
+	?>
+	
+	
+	
+	
+	</div>
+			  
     <div class="page-header" style="display:none;" id="showListUsers">				
 					<div align="center">
 	<p>&nbsp;</p>
@@ -148,14 +156,19 @@ class="btn btn-primary" >Try Again?</a></p>
 	</div>
 	
 	<h4 style="padding-left:60px;">Showing <span id="num_results_users"></span> users:</h4> 
-	
-				
-	<form  id="updateStatus" name="updateStatus" action="update_user.php" method="post">     
+		<div align="center" style="width:94%; margin: 0 auto; padding-top:10px; display:none; " id="message_delete">
+			<div class="alert alert-error">
+			<a href="#" class="close" data-dismiss="alert">&times;</a>
+			<h4>ACCOUNT DELETED!</h4>
+			User account has been successfully deleted.
+			</div>		
+		</div> 			
+	<form  id="updateStatus" name="updateStatus" action="update_patient.php" method="post">     
 	<?php
 	//$query_users = "SELECT * FROM users, users_info WHERE users.id = users_info.users AND users.role = 2";
-	$query_users = "SELECT users.*, users_info.* FROM users left join users_info 
-					ON users.id = users_info.users where users.role = 2;";
-
+	$query_users = "SELECT patients.*, patient_info.* FROM patients inner join patient_info 
+					ON patients.id = patient_info.patients where patients.role = 3 and  patients.gp = $gp";
+			//	echo $query_users;
 		$result_users = mysql_query($query_users);
 		if ($result_users) {
 		$count = 0;
@@ -178,7 +191,7 @@ class="btn btn-primary" >Try Again?</a></p>
 				$sugar_level_p = $row['sugar_level'];
 				$height_p = $row['height'];
 				$weight_p = $row['weight'];
-				$users_p = $row['users'];
+				$users_p = $row['patients'];
 
 				echo " 
 				<div  class='$users_p'>
@@ -188,8 +201,7 @@ class="btn btn-primary" >Try Again?</a></p>
 					<h3><strong>{$fname_p} {$lname_p}</strong></h3>
 					<div class='list-meta'></div> 
 					<img class='loading$users_p list-follow' style='padding:5px 90px 20px 0; display:none; ' src='img/preload.gif' width='24' height='24' />
-					<a href='update_user.php?userid=$users_p' style='color:#fff;' class='list-follow edit btn btn-danger' /> Edit</a>
-					
+					<a href='update_patient.php?userid=$users_p' style='color:#fff;' class='list-follow edit btn btn-danger' /> Edit</a> 
 					
 				</div>  
 				<ul>  
@@ -204,7 +216,7 @@ class="btn btn-primary" >Try Again?</a></p>
 							Gender: {$gender_p} 
 						</div>
 					</li>
-										
+					
 					<li>
 						<div>
 							Blood type: {$blood_p} 
@@ -245,12 +257,14 @@ class="btn btn-primary" >Try Again?</a></p>
 					
 					
 					<p style='padding:10px 0 0 40px'>
-					<input id='$users_p' name='$users_p' type='button' style='padding: 7px 10px' class='btn btn-primary btn-medium view' value='View Employee Details' />		
-					<a href='admin_print_details.php?userid=$users_p' style='color:#fff;' class='list-follow edit btn btn-success' /> Print Details</a> 
+					<input id='$users_p' name='$users_p' type='button' class='btn btn-primary view' value='View Employee Details' />		
+					<a href='doctor_print_details.php?userid=$users_p' style='color:#fff;' class='list-follow edit btn btn-success' /> Print Details</a> 
 					</p>
 				</ul>				
 							
 				</div>
+				
+				
 				
 				
 				</div>
@@ -273,7 +287,7 @@ class="btn btn-primary" >Try Again?</a></p>
 					
 					
 					
-					<?php include('include/add_new_user_form.php'); ?>	
+					<?php include('include/add_new_patient_form.php'); ?>	
 					
                 </div>				                
             </div>
@@ -281,11 +295,35 @@ class="btn btn-primary" >Try Again?</a></p>
         </section>
 
     </div>
-	    <div class="disease" style="margin: 0 auto; width:80%;">
-		<h3 style="padding: 0 10px;">Statistic of Disease</h3>
-		</div>
-		<div id="chart" style="margin: 0 auto 50px auto; width:80%;" class="chartpie" ></div>
+	
 		
+	<div id="showpercentage" class="list-widget" style="margin: 0 auto 50px auto; width:80%; display:none;" >
+	<?php
+	$query_count = "SELECT COUNT(type_of_disease) FROM users_info "; 		 
+	$result_count = mysql_query($query_count) or die(mysql_error());
+
+	while($row = mysql_fetch_array($result_count)) {		
+	$total  = $row['COUNT(type_of_disease)'];
+	}
+	
+	echo "<h2>STATISTIC OF DISEASE</h2><br />";
+	echo "<h3>Total: $total Users</h3><br />";
+	$query_statistic = "SELECT *, COUNT(type_of_disease) FROM users_info GROUP BY type_of_disease "; 		 
+	$result_statistic = mysql_query($query_statistic) or die(mysql_error());
+
+	while($row = mysql_fetch_array($result_statistic)) {
+	    
+		$c = $row['COUNT(type_of_disease)'];
+		$d = strtoupper($row['type_of_disease']);
+		$percentage = round(($c * 100) / $total , 2);
+		echo'<div class="progress progress-striped active" >';
+		echo"<div class='bar' style='width: $percentage%; background-color: #149BDF;'>$d: $c USER Or $percentage% </div>";
+		echo "<br />";
+		echo'</div>';
+	}
+	?>
+	</div>
+    
     <!-- Page Footer -->
     <footer id="footer" role="contentinfo" class="section">
         <div class="container">
@@ -295,16 +333,16 @@ class="btn btn-primary" >Try Again?</a></p>
                    
                     <ul class="icons">
                         <li>
-                            <i class="icon-envelope"></i><a href="mailto:initmyanmar@gmail.com">Mr. GP</a>
+                            <i class="icon-envelope"></i><a href="mailto:zayarsoethein.k@gmail.com">EHMS</a>
                         </li>
                         <li>
-                            <i class="icon-twitter"></i><a href="http://www.twitter.com/Mr. GP" target="_blank">@initmyanmarsoftware</a>
+                            <i class="icon-twitter"></i><a href="http://www.twitter.com/ehms" target="_blank">@zayar</a>
                         </li>
                         <li>
-                            <i class="icon-facebook"></i><a href="http://www.facebook.com/profile.php?id=1918713951751319" target="_blank">Init Myanmar Software</a>
+                            <i class="icon-facebook"></i><a href="http://www.facebook.com" target="_blank">zayar &amp; phyo</a>
                         </li>
                         <li>
-                            <i class="icon-phone"></i>+95 9455821510
+                            <i class="icon-phone"></i>+60176259769
                         </li>
                     </ul>
                 </div>
@@ -314,14 +352,14 @@ class="btn btn-primary" >Try Again?</a></p>
                         <li><p>
                                 <i class="icon-twitter"></i>How to Know If You Have High Cholesterol
                                 <small>
-                                    by <a href="#">Mr. GP</a>
+                                    by <a href="#">EHMS</a>
                                 </small>
                             </p>
                         </li>
                         <li><p>
                                 <i class="icon-twitter"></i>A Good Workout Can Work the Kinks Out
                                 <small>
-                                    by <a href="#">Mr. GP</a>
+                                    by <a href="#">EHMS</a>
                                 </small>
                             </p>
                         </li>
@@ -345,7 +383,7 @@ class="btn btn-primary" >Try Again?</a></p>
             <p>&nbsp;</p>
             	<div class="row-fluid pull-center">
                     <div class="span12">
-                        &copy; 2013 - Mr. GP by <a href="mailto:initmyanmmar@gmail.com">Init Myanmar Software</a>
+                        &copy; 2013 - EHMS by <a href="mailto:zayarsoethein.k@gmail.com">Zayar &amp; Phyo</a>
                     </div>
         	 	</div>           
         </div>
@@ -380,48 +418,27 @@ class="btn btn-primary" >Try Again?</a></p>
     <!-- Load boostrap and custom scripts -->
     <script src="js/bootstrap.js"></script>
     <script src="js/script.js"></script>
-
     <!-- end scripts -->
-	<script class="code" type="text/javascript">
-	$(document).ready(function(){
-	  var data = <?php echo $data; ?>;
-	  var plot1 = jQuery.jqplot ('chart', [data], 
-		{ 
-		  seriesDefaults: {
-			renderer: jQuery.jqplot.PieRenderer, 
-			rendererOptions: {
-			  showDataLabels: true
-			}
-		  }, 
-		  legend: { show:true, location: 'e' }
-		}
-	  );
-	});
-	</script>
-	
-	<script type="text/javascript" src="js/jquery.jqplot.js"></script>
-    <script type="text/javascript" src="js/jqplot.pieRenderer.js"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
            $(".logout").click(function() { 
 				top.location.href='include/logout.php';
 			});
-					
-			$(".listusers").click(function() { 				
-				$("#addNewUsers, .chartpie, .disease, #message_update").slideUp("slow");
-				$("#showListUsers").slideDown("slow");
 			
+			$(".listusers").click(function() { 				
+				$("#showpercentage, #addNewUsers, #update").slideUp("slow");
+				$("#showListUsers").slideDown("slow");
 			});
 			
 			$(".addnewusers").click(function() { 
-				$("#showListUsers, .chartpie, .disease, #message_update").slideUp("slow");
+				$("#showpercentage, #showListUsers, #update").slideUp("slow");
 				$("#addNewUsers").slideDown("slow");
-			
 			});
 			
 			$(".showpercentage").click(function() { 
-				$("#addNewUsers, #showListUsers, #message_update").slideUp("slow");
-				$(".chartpie, .disease").slideDown("slow").css('display', 'block');
+				$("#addNewUsers, #showListUsers, #update").slideUp("slow");
+				$("#showpercentage").slideDown("slow");
+				
 			});
 									
 			$(".view").click(function() {	
@@ -433,15 +450,8 @@ class="btn btn-primary" >Try Again?</a></p>
 			$('#search_input_users').fastLiveFilter('#search_users', {
 				callback: function(total) { $('#num_results_users').html(total); }
 			});
-			
-			$(".edit").click(function() {	
-				var userid = $(this).attr("id"); 
-				$("#showEdit"+userid).slideDown("slow");
-				$(".showEdit").not("#showEdit"+userid).slideUp("slow");
-			});
-			
+	
         });
 	</script>
-	
 
 </body></html>

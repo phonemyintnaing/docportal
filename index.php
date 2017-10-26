@@ -3,8 +3,8 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
-    <title>Doctor Portal | Home page</title>
-    <meta name="description" content="Doctor Portal">
+    <title>Mr. GP | Home page</title>
+    <meta name="description" content="Mr. GP">
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -40,7 +40,7 @@
                     </a>
                     <h1>
                         <a class="brand" href="index.php">
-                            Doctor Portal
+                            Mr. GP
                             <i class="icon-user-md"></i>
                         </a>
                             
@@ -257,19 +257,18 @@ Get the most out of your exercise routine by making sure you elevate your heart 
             <div class="row-fluid">
                 <div class="span4">
                     <h3>Contact us</h3>
-                   
-                    <ul class="icons">
+                               <ul class="icons">
                         <li>
-                            <i class="icon-envelope"></i><a href="mailto:doctormail@gmail.com">Doctor Portal</a>
+                            <i class="icon-envelope"></i><a href="mailto:initmyanmar@gmail.com">Mr. GP</a>
                         </li>
                         <li>
-                            <i class="icon-twitter"></i><a href="http://www.twitter.com/Doctor Portal" target="_blank">@doctor Clinic</a>
+                            <i class="icon-twitter"></i><a href="http://www.twitter.com/Mr. GP" target="_blank">@initmyanmarsoftware</a>
                         </li>
                         <li>
-                            <i class="icon-facebook"></i><a href="http://www.facebook.com" target="_blank">Doctor Clinic</a>
+                            <i class="icon-facebook"></i><a href="http://www.facebook.com/profile.php?id=1918713951751319" target="_blank">Init Myanmar Software</a>
                         </li>
                         <li>
-                            <i class="icon-phone"></i>09792061032
+                            <i class="icon-phone"></i>+95 9455821510
                         </li>
                     </ul>
                 </div>
@@ -279,14 +278,14 @@ Get the most out of your exercise routine by making sure you elevate your heart 
                         <li><p>
                                 <i class="icon-twitter"></i>How to Know If You Have High Cholesterol
                                 <small>
-                                    by <a href="#">Doctor Portal</a>
+                                    by <a href="#">Mr. GP</a>
                                 </small>
                             </p>
                         </li>
                         <li><p>
                                 <i class="icon-twitter"></i>A Good Workout Can Work the Kinks Out
                                 <small>
-                                    by <a href="#">Doctor Portal</a>
+                                    by <a href="#">Mr. GP</a>
                                 </small>
                             </p>
                         </li>
@@ -297,11 +296,11 @@ Get the most out of your exercise routine by making sure you elevate your heart 
                     <ul class="unstyled">
                         <li>
                             <h4><a href="#">The greatest wealth is health</a></h4>
-                            <p><small>April 12, 2017</small></p>
+                            <p><small>September 22, 2017</small></p>
                         </li>
                         <li>
                             <h4><a href="#">Physical fitness</a></h4>
-                            <p><small>April 20, 2017</small></p>
+                            <p><small>September 20, 2017</small></p>
                         </li>
                        
                     </ul>
@@ -310,7 +309,7 @@ Get the most out of your exercise routine by making sure you elevate your heart 
             <p>&nbsp;</p>
             	<div class="row-fluid pull-center">
                     <div class="span12">
-                        &copy; 2017 - Doctor Portal by <a href="mailto:doctormail@gmail.com">Doctor Clinic</a>
+                        &copy; 2017 - Mr. GP by <a href="mailto:zayarsoethein.k@gmail.com">Zayar &amp; Phyo</a>
                     </div>
         	 	</div>           
         </div>

@@ -2,10 +2,10 @@
 define('ACCESS', TRUE);
 include('include/connect.inc.php');
 session_start();
-if(!isset($_SESSION['role']) && $_SESSION['role'] != 1){
+if(!isset($_SESSION['role']) || $_SESSION['role'] != 2){
 	header('Location: index.php');	
 }
-
+$userid = $_SESSION['id'];
 $query_count = "SELECT *, COUNT(type_of_disease) FROM users_info GROUP BY type_of_disease"; 		 
 	$result_count = mysql_query($query_count) or die(mysql_error());
 	$data = array();
@@ -37,7 +37,7 @@ $query_count = "SELECT *, COUNT(type_of_disease) FROM users_info GROUP BY type_o
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery.fancybox.pack.js"></script>
 	<script type="text/javascript" src="js/jquery.fastLiveFilter.js"></script>
-	<script type="text/javascript" src="js/jquery-ajax-add_new_user.js"></script>
+	<script type="text/javascript" src="js/jquery-ajax-add_new_patient.js"></script>
 	<script type="text/javascript" src="js/update_status.js"></script>
 	<link class="include" rel="stylesheet" type="text/css" href="css/jquery.jqplot.css" />
     <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/excanvas.js"></script><![endif]-->
@@ -81,15 +81,15 @@ $query_count = "SELECT *, COUNT(type_of_disease) FROM users_info GROUP BY type_o
     <div id="content" role="main">
 	  <section style="padding:20px; margin:0;">
             <div class="container" align="center">
-                   <h2 align="center">Administrator Dashboard</h2>
+                   <h2 align="center">Doctor Dashboard</h2>
 					<br />
             	<div class="btn-toolbar" style="margin: 0;">
                 
                 <div class="btn-group" align="left">
-                <button class="btn btn-white dropdown-toggle" data-toggle="dropdown">Manage Users <span class="caret"></span></button>
+                <button class="btn btn-white dropdown-toggle" data-toggle="dropdown">Manage Patients <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                  <li><a class="listusers" href="#">List Users</a></li>
-                  <li><a class="addnewusers" href="#">Add New Users</a></li>  
+                  <li><a class="listusers" href="#">Patients List</a></li>
+                  <li><a class="addnewusers" href="#">Add New Patients</a></li>  
 				 <li><a class="showpercentage" href="#">Statistic of Disease</a></li>
                 </ul>
               </div>
@@ -153,9 +153,9 @@ class="btn btn-primary" >Try Again?</a></p>
 	<form  id="updateStatus" name="updateStatus" action="update_user.php" method="post">     
 	<?php
 	//$query_users = "SELECT * FROM users, users_info WHERE users.id = users_info.users AND users.role = 2";
-	$query_users = "SELECT users.*, users_info.* FROM users left join users_info 
-					ON users.id = users_info.users where users.role = 2;";
-
+	$query_users = "SELECT patients.*, patient_info.* FROM patients inner join patient_info 
+					ON patients.id = patient_info.patients where patients.role = 3 and  patients.gp = $userid";
+ 	//echo $query_users;
 		$result_users = mysql_query($query_users);
 		if ($result_users) {
 		$count = 0;
@@ -178,7 +178,7 @@ class="btn btn-primary" >Try Again?</a></p>
 				$sugar_level_p = $row['sugar_level'];
 				$height_p = $row['height'];
 				$weight_p = $row['weight'];
-				$users_p = $row['users'];
+				$users_p = $row['patients'];
 
 				echo " 
 				<div  class='$users_p'>
@@ -188,7 +188,7 @@ class="btn btn-primary" >Try Again?</a></p>
 					<h3><strong>{$fname_p} {$lname_p}</strong></h3>
 					<div class='list-meta'></div> 
 					<img class='loading$users_p list-follow' style='padding:5px 90px 20px 0; display:none; ' src='img/preload.gif' width='24' height='24' />
-					<a href='update_user.php?userid=$users_p' style='color:#fff;' class='list-follow edit btn btn-danger' /> Edit</a>
+					<a href='update_patient.php?userid=$users_p' style='color:#fff;' class='list-follow edit btn btn-danger' /> Edit</a>
 					
 					
 				</div>  
@@ -246,7 +246,7 @@ class="btn btn-primary" >Try Again?</a></p>
 					
 					<p style='padding:10px 0 0 40px'>
 					<input id='$users_p' name='$users_p' type='button' style='padding: 7px 10px' class='btn btn-primary btn-medium view' value='View Employee Details' />		
-					<a href='admin_print_details.php?userid=$users_p' style='color:#fff;' class='list-follow edit btn btn-success' /> Print Details</a> 
+					<a href='doctor_print_details.php?userid=$users_p' style='color:#fff;' class='list-follow edit btn btn-success' /> Print Details</a> 
 					</p>
 				</ul>				
 							
@@ -273,7 +273,7 @@ class="btn btn-primary" >Try Again?</a></p>
 					
 					
 					
-					<?php include('include/add_new_user_form.php'); ?>	
+					<?php include('include/add_new_patient_form.php'); ?>	
 					
                 </div>				                
             </div>
